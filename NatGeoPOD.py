@@ -19,8 +19,15 @@ def getInfo(html):
     remove=captionDiv.find('p',{'class':None})
     remove.extract()
     #Description is the next element with no class
-    desc=captionDiv.find('p',{'class':None}).text
-    return title+"\n"+credit+" - NatGeo PoD"+"\n"+time+"\n"+desc
+    desc=captionDiv.find('p',{'class':None}).text.strip() #rstrip removes new line chars 
+    return title+"\n"+credit+"\n"+time+"\n"+desc
+
+#Returns the link to the previous IMG of day
+def getPrevLink(html):
+    prevP=html.body.find('p',attrs={'class':'prev'}) #paragraph where link will be
+    pathToNext=prevP.a['href']
+    baseUrl="http://photography.nationalgeographic.com"
+    return baseUrl+pathToNext
 
 #Main method
 def main():
@@ -29,7 +36,7 @@ def main():
     except IOError:
         print("File not found")
         sys.exit(1)
-    print(getPic(html)+"\n"+getInfo(html))
+    print(getPic(html)+"\n"+getInfo(html)+"\n"+getPrevLink(html))
 
 #Run Main method
 main()
