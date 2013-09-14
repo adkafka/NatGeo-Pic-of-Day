@@ -10,9 +10,8 @@
 
 
 # Things to add:
-## Add cron functionality:
 ## Add in -s and -r flags to trigger in place flags
-
+## Make ln only run if doesn't already exist
 
 #############
 # FUNCTIONS #
@@ -99,7 +98,7 @@ function DownloadImage(){
 ###########
 #VARIABLES#
 ###########
-silentFlag="True" #Comment out to run normally
+#silentFlag="True" #Comment out to run normally
 #recursiveFlag="True" #Comment out to run normally
 
 destFolder="/Users/Adam/Desktop/PicturesOfDay/NatGeo/"
