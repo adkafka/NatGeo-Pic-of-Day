@@ -7,6 +7,7 @@
 # FLAGS
 ## Silent flag (silentFlag) - True to be silent
 ## Recursive flag (recursiveFlag) - True to run recursively to yesterday
+## Force flag (forceFlag) - Force download this time (ignore whether succeeded today)
 
 
 # Things to add:
@@ -100,6 +101,7 @@ function DownloadImage(){
 ###########
 #silentFlag="True" #Comment out to run normally
 #recursiveFlag="True" #Comment out to run normally
+#forceFlag="True" # Comment out to run normally
 
 destFolder="/Users/Adam/Desktop/PicturesOfDay/NatGeo/"
 url="http://photography.nationalgeographic.com/photography/photo-of-the-day/"
@@ -128,11 +130,12 @@ fi
 #See if ran succesfully today
 cat ${logFile} | egrep -q "NatGeoPoD - `date +%a" "%b" "%d` [0-9:]{8} `date +%Z" "%Y` - Succeeded"
 succeeded=`echo $?`
-if [[ ${succeeded} -eq 0 ]];then
-    log "No need to run. already succeeded today"
-    exit 0
+if [ ! "$forceFlag" == "True" ]; then
+    if [[ ${succeeded} -eq 0 ]];then
+        log "No need to run. already succeeded today"
+        exit 0
+    fi
 fi
-
 
 #Starting
 log "STARTING SCRIPT"
@@ -150,7 +153,7 @@ if [[ $curlExit -gt 0 ]]; then
     exit 1
 fi 
 #Run python script & output to a file
-python ../$pyScript > $infoFile
+python3.2 ../$pyScript > $infoFile
 
 #Get info passed thru file, Read first line - from infoFile (awk with \n as seperator or each line with sed)
 picUrl=`sed -n 1p $infoFile`
