@@ -100,8 +100,8 @@ function DownloadImage(){
 #VARIABLES#
 ###########
 #silentFlag="True" #Comment out to run normally
-#recursiveFlag="True" #Comment out to run normally
-#forceFlag="True" # Comment out to run normally
+recursiveFlag="True" #Comment out to run normally
+forceFlag="True" # Comment out to run normally
 
 destFolder="/Users/Adam/Desktop/PicturesOfDay/NatGeo/"
 url="http://photography.nationalgeographic.com/photography/photo-of-the-day/"

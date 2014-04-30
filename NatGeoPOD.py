@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup #Import BeautifulSoup
 #Prints url to picture from index.html
 def getPic(html):
     photoDiv=html.body.find('div', attrs={'class':'primary_photo'}) #Go to div that holds primary_photo
-    return photoDiv.img['src'] #Get src of image
+    return photoDiv.img['src'][2:] #Get src of image and remove begining '//'
 
 #Gets metadata info about the picture
 def getInfo(html):
