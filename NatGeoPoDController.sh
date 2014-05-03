@@ -128,7 +128,7 @@ if [ ! -f ${logFile} ]; then
 fi
 
 #See if ran succesfully today
-cat ${logFile} | egrep -q "NatGeoPoD - `date +%a" "%b" "%d` [0-9:]{8} `date +%Z" "%Y` - Succeeded"
+cat ${logFile} | egrep -q "NatGeoPoD - `date +%a" "%b" "%e` [0-9:]{8} `date +%Z" "%Y` - Succeeded"
 succeeded=`echo $?`
 if [ ! "$forceFlag" == "True" ]; then
     if [[ ${succeeded} -eq 0 ]];then
